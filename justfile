@@ -1,5 +1,3 @@
-set shell := ["zsh", "-cu"]
-
 # This help
 @help:
     just -l --list-heading=$'{{ file_name(justfile()) }} commands:\n'

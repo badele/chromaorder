@@ -1,0 +1,251 @@
+.grid {
+  grid-template-columns: minmax(0, 1fr) minmax(520px, 1.25fr);
+}
+
+.rule {
+  min-width: 0;
+  grid-template-columns: 22px minmax(120px, 1fr) 56px auto 46px 28px 28px 28px;
+}
+
+.rule select,
+.rule button,
+.rule input {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.rule .remove {
+  grid-column: auto;
+}
+
+.grayscale .swatch {
+  filter: grayscale(1) contrast(1.15);
+}
+
+.visualizer-select {
+  min-width: 190px;
+  margin: 5px 0 0;
+}
+
+.viewer-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  border-top: 1px solid #deddd8;
+  margin-top: 22px;
+  padding-top: 18px;
+}
+
+.viewer-heading p {
+  margin: 6px 0 0;
+}
+
+.contrast-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 0 10px;
+  font-size: 12px;
+}
+
+.contrast-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #55515a;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.contrast-toggle input {
+  accent-color: #25232b;
+}
+
+.contrast-ratio {
+  display: block;
+  color: #25232b;
+  font:
+    10px "DM Mono",
+    monospace;
+  margin-top: 4px;
+}
+
+.swatch {
+  position: relative;
+}
+
+.swatch-ratio {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  font:
+    10px "DM Mono",
+    monospace;
+  pointer-events: none;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.swatch-ratio strong {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.foreground-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #55515a;
+  font-size: 12px;
+}
+
+.foreground-picker input[type="color"] {
+  width: 28px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid #deddd8;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.foreground-picker code {
+  font:
+    10px "DM Mono",
+    monospace;
+}
+
+body.dark-mode .foreground-picker {
+  color: #eeeaf2;
+}
+
+html.dark-mode,
+html.dark-mode body {
+  background: #19181d;
+}
+
+body.dark-mode .direction button,
+body.dark-mode .reset,
+body.dark-mode .rotation > button {
+  background: #2d2a34;
+  border-color: #5a5565;
+  color: #eeeaf2;
+}
+
+body.dark-mode .direction button.active {
+  background: #8338ec !important;
+  border-color: #8338ec !important;
+  color: #fff !important;
+}
+
+body.dark-mode .rotation input {
+  accent-color: #8338ec;
+}
+
+.rotation input {
+  accent-color: #25232b;
+}
+
+body.dark-mode .contrast-toggle,
+body.dark-mode .contrast-ratio {
+  color: #eeeaf2;
+}
+
+.empty-result {
+  color: #77747b;
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.value-name {
+  color: #aaa6ae;
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+@media (max-width: 900px) {
+  main {
+    display: block;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Shared tool layout: result first, then input and controls on the right. */
+@media (min-width: 901px) {
+  main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(420px, 0.9fr);
+    grid-template-areas:
+      "header header"
+      "input controls"
+      "result controls";
+    gap: 18px;
+    align-items: start;
+  }
+
+  main > header {
+    grid-area: header;
+  }
+
+  main > .grid {
+    display: contents;
+  }
+
+  main > .grid > .input-panel {
+    grid-area: input;
+  }
+
+  main > .grid > .panel:not(.input-panel) {
+    grid-area: controls;
+  }
+
+  main > .result {
+    grid-area: result;
+    margin-top: 0;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .panel {
+    box-shadow: none;
+  }
+
+  .swatches {
+    border: 1px solid #777;
+    break-inside: avoid;
+  }
+
+  .swatch {
+    border-right: 1px solid #777;
+    min-height: 48px;
+  }
+
+  .swatch:last-child {
+    border-right: 0;
+  }
+
+  .button,
+  .theme-button,
+  .inspector,
+  textarea,
+  .rules,
+  .rotation {
+    display: none;
+  }
+}

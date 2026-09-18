@@ -3,6 +3,10 @@
 Client-side color palette sorting and analysis tool. The color engine is
 independent from React and preserves the original index for stable sorting.
 
+![Build with AI](./build-with-ai.svg)
+
+---
+
 ![chromaorder](./chromaorder.png)
 
 ## Development
